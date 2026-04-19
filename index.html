@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abdrakhym | Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #0b1020, #111827, #1e293b);
+      color: #e5e7eb;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      z-index: 0;
+    }
+
+    .hero::before {
+      width: 260px;
+      height: 260px;
+      background: #3b82f6;
+      top: 10%;
+      left: 5%;
+    }
+
+    .hero::after {
+      width: 300px;
+      height: 300px;
+      background: #8b5cf6;
+      bottom: 10%;
+      right: 8%;
+    }
+
+    .hero-card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 28px;
+      padding: 42px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.14);
+      color: #93c5fd;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+      border: 1px solid rgba(147, 197, 253, 0.2);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.8rem);
+      line-height: 1.05;
+      margin-bottom: 14px;
+      color: #ffffff;
+    }
+
+    .hero h1 span {
+      color: #60a5fa;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: #cbd5e1;
+      max-width: 650px;
+      margin-bottom: 26px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 600;
+      transition: 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #e5e7eb;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .profile-panel {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      padding: 28px;
+    }
+
+    .profile-panel h3 {
+      font-size: 1.2rem;
+      margin-bottom: 18px;
+      color: #f8fafc;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini-item {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .mini-item strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #93c5fd;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #94a3b8;
+      max-width: 760px;
+      margin: 0 auto 42px;
+      line-height: 1.8;
+    }
+
+    .about-card {
+      max-width: 950px;
+      margin: 0 auto;
+      background: rgba(15, 23, 42, 0.68);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 34px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .about-card p {
+      line-height: 1.9;
+      color: #cbd5e1;
+      font-size: 1.05rem;
+      text-align: center;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .skill-card {
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 24px;
+      transition: 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(96, 165, 250, 0.35);
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.14);
+    }
+
+    .skill-card h3 {
+      font-size: 1.3rem;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .skill-card p {
+      color: #94a3b8;
+      line-height: 1.7;
+      margin-bottom: 18px;
+      min-height: 90px;
+    }
+
+    .code-btn {
+      width: 100%;
+      padding: 14px 18px;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: #dbeafe;
+      border: 1px solid rgba(96, 165, 250, 0.18);
+      transition: 0.25s ease;
+    }
+
+    .code-btn:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #172033, #24324d);
+      box-shadow: 0 10px 28px rgba(59, 130, 246, 0.18);
+    }
+
+    .code-btn::before {
+      content: "> ";
+      color: #60a5fa;
+    }
+
+    .info-box {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      margin-top: 0;
+      padding: 0 18px;
+      border-radius: 16px;
+      background: rgba(2, 6, 23, 0.65);
+      border: 1px solid transparent;
+      transition: all 0.35s ease;
+    }
+
+    .info-box.active {
+      max-height: 320px;
+      opacity: 1;
+      margin-top: 16px;
+      padding: 18px;
+      border-color: rgba(96, 165, 250, 0.18);
+    }
+
+    .info-box p {
+      color: #cbd5e1;
+      line-height: 1.8;
+      font-size: 0.98rem;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 22px;
+    }
+
+    .timeline-card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 24px;
+    }
+
+    .timeline-card h4 {
+      color: #93c5fd;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .timeline-card p {
+      color: #cbd5e1;
+      line-height: 1.75;
+    }
+
+    footer {
+      padding: 28px 20px 36px;
+      text-align: center;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: 30px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-card,
+      .skills-grid,
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        padding: 28px;
+      }
+
+      .skill-card p {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.7rem;
+      }
+
+      .hero-card,
+      .about-card,
+      .skill-card,
+      .timeline-card {
+        border-radius: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div>
+          <span class="badge">Portfolio • Information Systems • SDU</span>
+          <h1>Hi, I’m <span>Abdrakhym</span></h1>
+          <p>
+            I am an Information Systems student at SDU who is building a strong foundation
+            in programming, problem solving, and software development through university assignments
+            and practice. I am especially interested in how different technologies work together
+            to create useful, structured, and modern digital solutions.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#skills" class="btn btn-primary">View My Skills</a>
+            <a href="#journey" class="btn btn-secondary">My Learning Journey</a>
+          </div>
+        </div>
+
+        <div class="profile-panel">
+          <h3>Quick Profile</h3>
+          <div class="mini-list">
+            <div class="mini-item">
+              <strong>University</strong>
+              SDU University
+            </div>
+            <div class="mini-item">
+              <strong>Major</strong>
+              Information Systems
+            </div>
+            <div class="mini-item">
+              <strong>Focus</strong>
+              HTML, CSS, Java, Python, C++
+            </div>
+            <div class="mini-item">
+              <strong>Learning Style</strong>
+              Practice through university assignments
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">
+        I am currently developing my technical background step by step. Most of my experience
+        comes from coursework, structured tasks, and hands-on university assignments that helped me
+        understand how programming languages are used to solve different kinds of problems.
+      </p>
+
+      <div class="about-card">
+        <p>
+          My interest in technology started to grow when I began exploring programming and logical thinking
+          more seriously. Over time, I understood that Information Systems is not only about coding, but also
+          about building efficient, organized, and user-focused systems. I enjoy learning the basics carefully,
+          improving through practice, and turning academic tasks into real experience.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-subtitle">
+        Click the code-style buttons below to open details about my background and current level in each language.
+      </p>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>C++</h3>
+          <p>
+            My early programming interest started with C++, where I first became curious about coding and competitions.
+          </p>
+          <button class="code-btn" onclick="toggleInfo('cpp-info')">Open C++ Story</button>
+          <div class="info-box" id="cpp-info">
+            <p>
+              I became interested in C++ in the 10th grade, when I started paying more attention to programming and problem solving.
+              During that time, I also participated in many competitions, which made me more motivated to improve my logical thinking
+              and coding skills. C++ helped me understand the basics of algorithms, structure, and the importance of writing clear solutions.
+            </p>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Python</h3>
+          <p>
+            Python is one of the languages I studied mainly through school-level and foundational programming tasks.
+          </p>
+          <button class="code-btn" onclick="toggleInfo('python-info')">Open Python Story</button>
+          <div class="info-box" id="python-info">
+            <p>
+              In Python, I currently know mainly school-based structures and basic concepts. My experience includes simple syntax,
+              variables, conditions, loops, functions, and solving beginner-friendly tasks. It gave me a comfortable introduction
+              to programming logic and helped me practice writing shorter and more readable code.
+            </p>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Java</h3>
+          <p>
+            I started learning Java after entering university, especially through coursework and programming assignments.
+          </p>
+          <button class="code-btn" onclick="toggleInfo('java-info')">Open Java Story</button>
+          <div class="info-box" id="java-info">
+            <p>
+              I only started learning Java when I came to the university. Most of what I know in Java comes from university assignments,
+              where I practiced object-oriented programming, classes, methods, constructors, arrays, and basic file handling. Java helped me
+              better understand structured programming and how academic tasks can be turned into practical coding experience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="journey">
+    <div class="container">
+      <h2 class="section-title">My Learning Journey</h2>
+      <p class="section-subtitle">
+        My progress in programming has been built gradually through curiosity, school experience, competitions, and university practice.
+      </p>
+
+      <div class="timeline">
+        <div class="timeline-card">
+          <h4>School Stage</h4>
+          <p>
+            I began building interest in programming during school, especially while learning foundational concepts and exploring logic-based tasks.
+          </p>
+        </div>
+
+        <div class="timeline-card">
+          <h4>Competition Experience</h4>
+          <p>
+            Participation in competitions helped me become more serious about problem solving and gave me motivation to improve my thinking skills.
+          </p>
+        </div>
+
+        <div class="timeline-card">
+          <h4>University Practice</h4>
+          <p>
+            At SDU, I started learning more structured programming through assignments, especially in Java, and expanded my understanding of software development.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Designed as a modern student portfolio • Abdrakhym • Information Systems • Last Deployment: April 19, 2026</p>
+  </footer>
+
+  <script>
+    function toggleInfo(id) {
+      const currentBox = document.getElementById(id);
+      const allBoxes = document.querySelectorAll(".info-box");
+
+      allBoxes.forEach(box => {
+        if (box !== currentBox) {
+          box.classList.remove("active");
+        }
+      });
+
+      currentBox.classList.toggle("active");
+    }
+  </script>
+</body>
+</html>
